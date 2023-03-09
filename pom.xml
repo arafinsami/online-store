@@ -19,7 +19,7 @@
 		<jakarta.servlet.jsp.jstl.version>3.0.0</jakarta.servlet.jsp.jstl.version>
 		<jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
 		<lombok-version>1.18.24</lombok-version>
-		<spring.version>6.0.4</spring.version>
+		<spring.version>6.0.6</spring.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -38,6 +38,11 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>${javax.servlet-api.version}</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
+			<version>3.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>jakarta.servlet.jsp.jstl</groupId>
