@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc
 @PropertySource(value = { "classpath:packages.properties" })
-@ComponentScan(basePackages = { "${scan.controller}", "${scan.service}" })
+@ComponentScan(basePackages = { "${scan.controller}", "${scan.service}", "${scan.mapper}" })
 public class MvcConfig implements WebMvcConfigurer {
 
 	@Bean
