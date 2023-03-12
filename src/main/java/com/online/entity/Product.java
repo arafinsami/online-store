@@ -1,7 +1,6 @@
 package com.online.entity;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +9,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import com.online.model.ProductCategory;
 import com.online.model.ProductCondition;
@@ -23,6 +25,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@DynamicInsert
+@DynamicUpdate
 @Builder(toBuilder = true)
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
@@ -52,9 +56,9 @@ public class Product implements Serializable {
 
 	private String description;
 
-	private BigDecimal price;
+	private Integer price;
 
-	private int unitInStock;
+	private Integer unitInStock;
 
 	private String manufacturer;
 }

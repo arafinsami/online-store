@@ -15,6 +15,7 @@ import com.online.entity.Product;
 import com.online.exception.ResourceNotFoundException;
 import com.online.mapper.ProductMapper;
 import com.online.model.ProductModel;
+import com.online.query.ProductQuery;
 import com.online.repository.ProductRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,8 @@ public class ProductService {
 	private final ProductRepository productRepository;
 
 	private final ProductMapper productMapper;
+	
+	private final ProductQuery productQuery;
 
 	private final EntityManager em;
 
@@ -34,6 +37,11 @@ public class ProductService {
 		Product product = productMapper.to(productModel);
 		Product p = productRepository.save(product);
 		return p;
+	}
+	
+	@Transactional
+	public List<Product> saveAll() {
+		return productRepository.saveAll(productMapper.to());
 	}
 
 	@Transactional
@@ -54,14 +62,7 @@ public class ProductService {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<ProductModel> cq = cb.createQuery(ProductModel.class);
 		Root<Product> root = cq.from(Product.class);
-		cq.select(cb.construct(ProductModel.class, 
-				        root.get("id"),
-						root.get("name"),
-						root.get("image"),
-						root.get("productCategory"),
-						root.get("productCondition"),
-						root.get("productStatus"),
-						root.get("price")));
+		productQuery.getProducts(cb, cq, root);
 		TypedQuery<ProductModel> tq = em.createQuery(cq);
 		List<ProductModel> products = tq.getResultList();
 		return products;

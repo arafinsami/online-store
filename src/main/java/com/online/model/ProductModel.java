@@ -1,7 +1,5 @@
 package com.online.model;
 
-import java.math.BigDecimal;
-
 import lombok.Getter;
 
 @Getter
@@ -21,14 +19,14 @@ public class ProductModel {
 
 	private String description;
 
-	private BigDecimal price;
+	private Integer price;
 
-	private int unitInStock;
+	private Integer unitInStock;
 
 	private String manufacturer;
 
 	public ProductModel(Long id, String name, String image, ProductCategory productCategory,
-			ProductCondition productCondition, ProductStatus productStatus, BigDecimal price) {
+			ProductCondition productCondition, ProductStatus productStatus, Integer price) {
 		this.id = id;
 		this.name = name;
 		this.image = image;
