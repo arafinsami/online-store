@@ -10,6 +10,7 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.online.entity.Product;
 import com.online.exception.ResourceNotFoundException;
@@ -17,28 +18,30 @@ import com.online.mapper.ProductMapper;
 import com.online.model.ProductModel;
 import com.online.query.ProductQuery;
 import com.online.repository.ProductRepository;
+import com.online.utils.FileUpload;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class ProductService {
+public class ProductService extends FileUpload {
 
 	private final ProductRepository productRepository;
 
 	private final ProductMapper productMapper;
-	
+
 	private final ProductQuery productQuery;
 
 	private final EntityManager em;
 
 	@Transactional
-	public Product save(ProductModel productModel) {
+	public Product save(ProductModel productModel, MultipartFile file) {
 		Product product = productMapper.to(productModel);
+		product.setImage(upload(file));
 		Product p = productRepository.save(product);
 		return p;
 	}
-	
+
 	@Transactional
 	public List<Product> saveAll() {
 		return productRepository.saveAll(productMapper.to());

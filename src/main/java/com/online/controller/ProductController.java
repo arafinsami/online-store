@@ -39,16 +39,16 @@ public class ProductController {
 	}
 
 	@PostMapping("/add-product")
-	public String save(@Valid @ModelAttribute(COMMAND_NAME) ProductModel productModel, BindingResult bindingResult,
+	public String save(@ModelAttribute(COMMAND_NAME) ProductModel productModel, BindingResult bindingResult,
 			Model model, RedirectAttributes redirectAttributes, SessionStatus sessionStatus,
 			@RequestParam("image") MultipartFile file) {
 
-		if (bindingResult.hasErrors()) {
-			model.addAttribute(COMMAND_NAME, productModel);
-			return "add_product";
-		}
+		/*
+		 * if (bindingResult.hasErrors()) { model.addAttribute(COMMAND_NAME,
+		 * productModel); return "add_product"; }
+		 */
 
-		productService.save(productModel);
+		productService.save(productModel, file);
 		redirectAttributes.addFlashAttribute(MESSAGE_KEY_SUCCESS, "Successfully Saved Product");
 		sessionStatus.setComplete();
 		return "redirect:/products";

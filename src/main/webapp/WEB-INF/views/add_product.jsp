@@ -23,7 +23,7 @@
 							<label>Product Category</label>
 							<form:select path="productCategory" class="form-control">
 								<form:option value="HARDWARE" label="Hardware">Hardware</form:option>
-								<form:option value="SOFTWARE" label="Software">Hardware</form:option>
+								<form:option value="SOFTWARE" label="Software">Software</form:option>
 							</form:select>
 						</div>
 						<div class="col-lg-4">
