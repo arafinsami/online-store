@@ -18,7 +18,8 @@
 						<c:forEach items="${products}" var="product">
 							<tr>
 								<th>${product.id}</th>
-								<th>${product.image}</th>
+								<th><img height="50px" width="50px" src="${pageContext.servletContext.contextPath }/product-upload-path/${product.image}" /></th>
+								
 								<th>${product.name}</th>
 								<th>${product.productCategory.getlabel()}</th>
 								<th>${product.productCondition.getlabel()}</th>

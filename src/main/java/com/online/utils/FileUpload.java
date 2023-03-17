@@ -29,14 +29,14 @@ public class FileUpload {
 		if (!file.isEmpty()) {
 			try {
 				byte[] bytes = file.getBytes();
-				File dir = new File(uploadPath + "/prpoduct");
+				File dir = new File(uploadPath);
 				if (!dir.exists())
 					dir.mkdirs();
 				File serverFile = new File(dir + File.separator + name);
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
 				stream.write(bytes);
 				stream.close();
-				return "prpoduct/" + name;
+				return name;
 			} catch (Exception e) {
 				return null;
 			}
